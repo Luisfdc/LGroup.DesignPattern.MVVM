@@ -1,0 +1,45 @@
+﻿<Window x:Class="LGroup.DesignPattern.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LGroup.DesignPattern.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel>
+            <Label 
+                Grid.Row="1" 
+                Grid.Column="1">Nome</Label>
+            <TextBox 
+                Margin="5" 
+                Grid.Row="2" 
+                Grid.Column="1"
+                Text="{Binding Path=Pessoa.Nome, Mode=TwoWay}"></TextBox>
+
+            <Label Grid.Row="2" Grid.Column="1">Email</Label>
+            <TextBox Margin="4" Grid.Row="3" Grid.Column="1" Text="{Binding Path=Pessoa.Email, Mode=TwoWay}"></TextBox>
+
+            <Button Margin="3" 
+                    Grid.Row="5" 
+                    Grid.Column="1" 
+                    Content="Salvar" 
+                    Command="{Binding SalvarPessoaCommand}"
+                    CommandParameter="{Binding Pessoa}">
+
+            </Button>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Bottom">
+            <ListView VerticalAlignment="Center"
+                      ItemsSource="{Binding Pessoas}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Nome}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Email}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>
